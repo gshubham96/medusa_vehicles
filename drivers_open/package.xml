@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>medusa_drivers</name>
+  <name>drivers_open</name>
   <version>1.0.0</version>
-  <description>The simple_bringup package</description>
+  <description>The drivers_open package</description>
 
   <maintainer email="marcelo.jacinto@tecnico.ulisboa.pt">Marcelo Jacinto</maintainer>
   <maintainer email="david.souto@tecnico.ulisboa.pt">David Souto</maintainer>
