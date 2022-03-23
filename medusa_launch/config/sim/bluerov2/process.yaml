@@ -1,11 +1,11 @@
 processes:
     - name: 'simulation'
-      launch_on_startup: false
+      launch_on_startup: true
       delay_before_start: 0.0
       cmd: 'roslaunch medusa_bringup sim.launch'
       args:
             - dynamics:= true
-            - sensors:= true
+            - sensors:= false
       dependencies:
             []
     - name: 'bags'
@@ -26,7 +26,7 @@ processes:
       dependencies:
             []
     - name: 'addons'
-      launch_on_startup: true
+      launch_on_startup: false
       delay_before_start: 0.0
       cmd: 'roslaunch medusa_bringup addons.launch'
       args:
@@ -35,7 +35,7 @@ processes:
       dependencies:
             []
     - name: 'navigation'
-      launch_on_startup: true
+      launch_on_startup: false
       delay_before_start: 4.0
       cmd: 'roslaunch medusa_bringup nav.launch'
       args:
@@ -45,7 +45,7 @@ processes:
       dependencies:
             []
     - name: 'controllers'
-      launch_on_startup: true
+      launch_on_startup: false
       delay_before_start: 1.0
       cmd: 'roslaunch medusa_bringup controls.launch'
       args:
@@ -66,7 +66,7 @@ processes:
       dependencies:
             []
     - name: 'planning'
-      launch_on_startup: true
+      launch_on_startup: false
       delay_before_start: 5.0
       cmd: 'roslaunch medusa_bringup planning.launch'
       args:

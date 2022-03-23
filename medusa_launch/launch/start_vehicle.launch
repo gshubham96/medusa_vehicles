@@ -4,7 +4,7 @@
     <!-- Parameters and Arguments -->
     <arg name="name"               default="bluerov2" />        <!-- Name of the vehicle being launched -->   
     <arg name="folder"             default="sim" />           <!-- Name of the folder for the configuration files -->     
-    <arg name="config_package"     default="medusa_vehicles"/>  <!-- Name of the package where the configuration files are stored -->
+    <arg name="config_package"     default="medusa_launch"/>  <!-- Name of the package where the configuration files are stored -->
 
     <arg name="dollar" value="$" />
     <arg name="config_package_path"  value="(find $(arg config_package)" />
