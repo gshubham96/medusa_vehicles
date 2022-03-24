@@ -1,0 +1,9 @@
+imu_to_meas:
+  node_frequency: 10
+  topics/publishers: ["/measurement/orientation"]
+  topics/subscribers: ["/mavros/imu/data"]
+
+pressure_to_meas:
+  node_frequency: 5
+  topics/publishers: ["/measurement/position"]
+  topics/subscribers: ["/mavros/imu/pressure"]

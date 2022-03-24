@@ -1,0 +1,3 @@
+node_frequency: 2
+topics/publishers: ["/measurement/position"]
+topics/subscribers: ["/mavros/imu/pressure"]
