@@ -51,6 +51,16 @@ sim/auv_sim:
         services:
             start_pause: "/sim/pause_start"
 
+# Dynamics topics for Vehicle medusa
+sim/dynamics:
+    topics:
+        subscribers:
+            thrusters: "/thrusters/rpm_command" 
+            external_force: "/medusa/external_force"
+        publishers:
+            position: "/sim/dynamics/position"
+
+
 ## sensor simulator
 sim/sensors:
     node_frequency: 10

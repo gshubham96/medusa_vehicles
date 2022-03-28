@@ -2,21 +2,16 @@ static_thruster_allocation:
   thrusters:
     # Allocation matrix
     # For each thruster [ Fx, Fy, Fz, lx, ly, lz ] where F = forces and l = moments arms
-    allocation_matrix: [0.707, -0.707, 0.0, -0.306, -0.062, 0.0,  
-                        0.707,  0.707, 0.0, -0.306,  0.062, 0.0, 
-                        0.0,    0.0,  -1.0,  -0.0, -0.120, 0.0, 
-                        0.0,    0.0,  -1.0,  -0.0,  0.120, 0.0, 
-                        0.707,  0.707, 0.0,  0.300, -0.197, -0.0,
-                        0.707, -0.707, 0.0,  0.300,  0.197, -0.0]
-
-    #Forces (N) = ct[0]*RPM^2 + c[1]*RPM + c[2]
-    ctf: [0.00000177778, 0.0, 0.0]     # parameters for medusa seabotix, eqn -> Thrust = f(rpm)
-    ctb: [-0.00000177778, 0.0, 0.0]     # parameters for medusa seabotix, eqn -> Thrust = f(rpm)
-    #Maximum thrust each thruster is capable of outputting (N)
-    max_thrust_norm:  36.0
-    min_thrust_norm: -36.0
+    allocation_matrix: [1.0, 0.0, 0.0, -0.25, -0.15, 0.0,  
+                        1.0, 0.0, 0.0, -0.25,  0.15, 0.0]
+        #Forces (N) = ct[0]*RPM^2 + c[1]*RPM + c[2]
+    ctf: [0.002, 0.0, 0.0]     # parameters for medusa seabotix, eqn -> Thrust = f(rpm)
+    ctb: [-0.002, 0.0, 0.0]     # parameters for medusa seabotix, eqn -> Thrust = f(rpm)
+    # Maximum thrust each thruster is capable of outputting (N)
+    max_thrust_norm:  20.0
+    min_thrust_norm:  -1.0  #TODO: Fix negative thrust as it can not be zero
     # RPM max value /100
-    actuators_gain: [45.0, 45.0, 45.0, 45.0, 45.0, 45.0]            # Inputs to actuators will be scaled to actuators_gain
+    actuators_gain: [1.0, 1.0]            # Inputs to actuators will be scaled to actuators_gain
 
 inner_loops_pid:
     #minimum altitude safety
@@ -31,7 +26,7 @@ inner_loops_pid:
     # Yaw Params
     controllers:
         yaw:
-            kp: 0.16
+            kp: 0.2
             ki: 0.0005
             kd: 0.133
             max_err:  60.0 # deg
@@ -42,30 +37,30 @@ inner_loops_pid:
         yaw_rate:
             kp: 0.16
             ki: 0.04444
-            max_err:  1.0 # deg
-            min_err: -1.0 # deg  
+            max_err:  3.0 # deg
+            min_err: -3.0 # deg  
             max_out:  4.0 # N.m
             min_out: -4.0
         # Surge Params
         surge:
-            kp: 20.0
+            kp: 26.0
             ki: 3.0
             max_ref:  0.7  # m/s
             min_ref: -0.7 # m/s
             max_err:  0.2 # m/s
             min_err: -0.2 # m/s  
-            max_out:  20.0 # N
-            min_out: -20.0
+            max_out:  14.0 # N
+            min_out: -14.0
         # Sway Params
         sway:
-            kp: 20.0
-            ki: 3.0
+            kp: 180
+            ki: 20 
             max_ref:  0.7  # m/s
             min_ref: -0.7 # m/s
             max_err:  0.2 # m/s
             min_err: -0.2 # m/s  
-            max_out:  40.0 # N
-            min_out: -40.0
+            max_out:  60.0 # N
+            min_out: -60.0
         # Depth Params
         depth:
             kp: 15
@@ -75,15 +70,17 @@ inner_loops_pid:
             min_err: -3.0 # m  
             max_out:  60.0 # N
             min_out: -60.0
+            min_alt: 1.0 # m
         # Altitude Params
         altitude:
-            kp: 15
-            ki: 0.7
-            kd: 20.0
+            kp: 10.0
+            ki: 0.3
+            kd: 30.0
             max_err:  3.0 # m
             min_err: -3.0 # m  
             max_out:  50.0 # N
             min_out: -50.0 # N
+            max_depth: 30.0 # m
 
 waypoint:
     cdist: 1.5

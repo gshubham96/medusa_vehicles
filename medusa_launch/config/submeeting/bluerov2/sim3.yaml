@@ -1,13 +1,13 @@
-auv_sim:
+dynamics:
 
   # General simulation environment constants
   fluid_density: 1.025 # (kg/l)
 
   # Vehicle dynamic parameters
   vehicle:
-    mass: 30 # (kg)
-    zg: 0.0 # center of gravity in body axis (m)
-    vehicle_density: 1.0 # TO DEFINE LATER
+    mass: 30                # (kg)
+    zg: 0.0                 # center of gravity in body axis (m)
+    vehicle_density: 1.0    # TO DEFINE LATER
     inertia_tensor: [1000.0, 1000.0, 4.14]  # diagonal (3x3) moment of inertia matrix (kg/m2)
     linear_damping_tensor: [0.0, -55.1, -4.1879, -3000.0, -3000.0, -4.14] # diagonal (6x6) matrix with linear damping
     quadratic_damping_tensor: [-27.5, -101.0, -40.9649,  -3000.0, -3000.0, -6.23] # diagonal (6x6) matrix with quadratic damping
@@ -16,12 +16,12 @@ auv_sim:
     actuators:
       # For each thruster [Fx, Fy, Fz, lx, ly, lz] where F = forces and l = moments arms
       # and each line of the matrix represents a thruster
-      allocation_matrix: [ 0.707, -0.707,  0.0, -0.306, -0.062,  0.0,
-                           0.707,  0.707,  0.0, -0.306,  0.062,  0.0,
-                           0.000,  0.000, -1.0, -0.087, -0.120,  0.0,
-                           0.000,  0.000, -1.0, -0.087,  0.120,  0.0,
-                           0.707,  0.707,  0.0,  0.300, -0.197, -0.0,
-                           0.707, -0.707,  0.0,  0.300,  0.197, -0.0 ]
+      allocation_matrix: [1.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+                          0.0, 1.0, 0.0, 0.0, 0.0, 0.0,
+                          0.0, 0.0, 1.0, 0.0, 0.0, 0.0,
+                          0.707, 0.707, 0.0, 1.0, 1.0, 0.0,
+                          0.707, 0.0, 0.707, 1.0, 0.0, 1.0,
+                          0.0, 0.707, 0.707, 0.0, 1.0, 1.0]
 
       # Thrusters parameter
       lump_param_positive: [0.00000177778, 0.0, 0.0]  # (a*|x|^{2} + b*|x| + c)

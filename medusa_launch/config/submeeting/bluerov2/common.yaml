@@ -1,0 +1,11 @@
+originLat: 43.106435                # are they being used?
+originLon: 5.928141                 # are they being used?
+vehicle:
+  control:
+    SURGE_TO_RPM: 101               # check this
+  safety_features:
+    max_depth: 5.0 # [m]            # relevant? check this
+    min_altitude: 1.0 # [m]         # check this
+    min_altitude_ref: 1.5 # [m]     # check this
+    wifi_timeout: 10.0 # [s]        # not relevant
+    acoustic_timeout: 15.0 # [s]    # not relevant

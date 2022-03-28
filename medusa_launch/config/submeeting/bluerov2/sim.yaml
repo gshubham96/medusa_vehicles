@@ -1,0 +1,91 @@
+# Dynamics model parameters for Vehicle medusa
+dynamics:
+  name: "bluerov"
+  initial_pose: [0.0, 0.0, 0.0, 0, 0, 0]   #Meters and Rads [X, Y, Z, Roll, Pitch, Yaw]
+  initial_velocity: [0, 0, 0, 0, 0, 0]
+  dynamics:
+    num_actuators: 6
+    period: 0.01
+    t_period: 0.1
+    mass: 30.0
+    gravity_center: [0.0, 0.0, 0.0]
+    g: 9.807
+    radius: 0.35
+    ctf: [0.00000177778, 0.0, 0.0]     # parameters for bluerobotics T200, eqn -> Thrust = f(rpm)
+    ctb: [-0.00000177778, 0.0, 0.0]     # parameters for bluerobotics T200, eqn -> Thrust = f(rpm)
+    actuators_tau: [0.2, 0.2, 0.2, 0.2]         # Actuator tau for first order actuator dynamic model
+    actuators_maxsat: [350, 350, 350, 350, 350, 350]      # Inputs higher than actuators_maxsat will saturate to actuators_maxsat
+    actuators_minsat: [32, 32, 32, 32, 32, 32]      # Inputs below actuators_minsat will saturated to zero
+    actuators_gain: [10, 10, 10, 10, 10, 10]            # Inputs to actuators will be scaled to actuators_gain
+    dzv: 0.05
+    dv: 0.25
+    dh: 0.25
+    density: 1000.0
+    tensor: [1000.0, 0, 0.0, 0.0, 1000.0, 0.0, 0.0, 0.0, 4.14]
+    damping: [-4.03, -6.22, -5.18, -0.07, -0.07, -0.07]
+    quadratic_damping: [-18.18, -21.66, -36.99,  -1.55, -1.55, -1.55]
+    Mrb: [ 30.0, 0.0,  0.0,  0.0,    0.0,    0.0, 
+            0.0, 30.0, 0.0,  0.0,    0.0,    0.0, 
+            0.0, 0.0,  30.0, 0.0,   -0.0,    0.0, 
+            0.0, 0.0,  0.0,  0.16,   0.0,   0.0, 
+            0.0, 0.0, -0.0,  0.0,    0.16,    0.0, 
+            -0.0, 0.0,    0.0,  0.0,  0.0,  0.16]
+    Ma: [ -5.5,   0.0,    0.0,  0.0,  0.0, 0.0, 
+           0.0, -12.7,    0.0,  0.0,  0.0, 0.0, 
+           0.0,   0.0, -14.57,  0.0,  0.0, 0.0, 
+           0.0,   0.0,    0.0, -0.12, 0.0, 0.0, 
+           0.0,   0.0,    0.0,  0.0, -0.12, 0.0, 
+           0.0,   0.0,    0.0,  0.0,  0.0, -0.12]
+    allocation_matrix: [1.0, 0.0, 0.0, 0.0, 0.0, 0.0,
+                        0.0, 1.0, 0.0, 0.0, 0.0, 0.0,
+                        0.0, 0.0, 1.0, 0.0, 0.0, 0.0,
+                        0.707, 0.707, 0.0, 1.0, 1.0, 0.0,
+                        0.707, 0.0, 0.707, 1.0, 0.0, 1.0,
+                        0.0, 0.707, 0.707, 0.0, 1.0, 1.0]
+    current_mean: [0.0, 0.0, 0.0]  #WATER CURRENTs SIMULATION
+    current_sigma: [0.0, 0.0, 0.0]
+    current_min: [0.0, 0.0, 0.0]
+    current_max: [0.0, 0.0, 0.0]
+
+
+world_frame: "world"
+base_link: "base_link"
+
+sensors:
+    water_column: 100
+    sensors:
+        - type     : "GNSS"
+          frame_id : "gnss"
+          frequency: 2.0
+          count    : 0        # After n measumerements sensor is discarded
+          noise    : 0.00
+          variance : 0.03
+          debug    : true     # Full gps even when diving
+        - type     : "DVL_BT"
+          frame_id : "dvl_bt"
+          frequency: 5.0
+          noise    : 0.10
+          variance : 0.05
+          altitude : 30.0
+          debug    : true     # works regardless of depth
+          count    : 0
+        - type     : "DVL_WT"
+          frame_id : "dvl_wt"
+          frequency: 5.0
+          noise    : 0.01
+          variance : 0.0
+          altitude : 110.0
+          count    : 0        # After n measumerements sensor is discarded
+        - type     : "AHRS"
+          frame_id : "ahrs"
+          frequency: 1.0
+          noise    : [0.051, 0.017]
+          variance : 0.001
+        - type     : "DEPTH"
+          frame_id : "depth"
+          frequency: 1.0
+          noise    : 0.01
+          variance : 0.005
+          count    : 0        # After n measumerements sensor is discarded
+        - type     : "MODEL"
+          frequency: 10.0

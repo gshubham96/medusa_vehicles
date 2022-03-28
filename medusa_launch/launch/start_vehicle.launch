@@ -3,7 +3,7 @@
 
     <!-- Parameters and Arguments -->
     <arg name="name"               default="bluerov2" />        <!-- Name of the vehicle being launched -->   
-    <arg name="folder"             default="sim" />           <!-- Name of the folder for the configuration files -->     
+    <arg name="folder"             default="submeeting" />           <!-- Name of the folder for the configuration files -->     
     <arg name="config_package"     default="medusa_launch"/>  <!-- Name of the package where the configuration files are stored -->
 
     <arg name="dollar" value="$" />
