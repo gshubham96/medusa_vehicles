@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<launch>
+
+	<rosparam command="load" file="$(find tools)/config/config.yaml"/>
+	<node pkg="tools" type="ardusub_thrust_allocation" name="ardusub_thrust_allocation" respawn="false" output="screen" />
+
+	<!-- <node pkg="tools" type="imu_to_meas" name="imu_to_meas" respawn="false" output="screen" />
+	<node pkg="tools" type="pressure_to_meas" name="pressure_to_meas" respawn="false" output="screen" /> -->
+
+	
+</launch>

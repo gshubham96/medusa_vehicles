@@ -1,18 +1,3 @@
-static_thruster_allocation:
-  thrusters:
-    # Allocation matrix
-    # For each thruster [ Fx, Fy, Fz, lx, ly, lz ] where F = forces and l = moments arms
-    allocation_matrix: [1.0, 0.0, 0.0, -0.25, -0.15, 0.0,  
-                        1.0, 0.0, 0.0, -0.25,  0.15, 0.0]
-        #Forces (N) = ct[0]*RPM^2 + c[1]*RPM + c[2]
-    ctf: [0.002, 0.0, 0.0]     # parameters for medusa seabotix, eqn -> Thrust = f(rpm)
-    ctb: [-0.002, 0.0, 0.0]     # parameters for medusa seabotix, eqn -> Thrust = f(rpm)
-    # Maximum thrust each thruster is capable of outputting (N)
-    max_thrust_norm:  20.0
-    min_thrust_norm:  -1.0  #TODO: Fix negative thrust as it can not be zero
-    # RPM max value /100
-    actuators_gain: [1.0, 1.0]            # Inputs to actuators will be scaled to actuators_gain
-
 inner_loops_pid:
     #minimum altitude safety
     min_alt: 2.0

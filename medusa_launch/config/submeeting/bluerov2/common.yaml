@@ -1,5 +1,7 @@
-originLat: 43.106435                # are they being used?
-originLon: 5.928141                 # are they being used?
+originLat: 38.765824
+originLon: -9.092815
+# originLat: 43.106435                # are they being used?
+# originLon: 5.928141                 # are they being used?
 vehicle:
   control:
     SURGE_TO_RPM: 101               # check this

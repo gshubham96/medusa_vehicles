@@ -41,32 +41,33 @@ filter:
                         0.02   , 0.03   , 0.04,
                         0.01 , 0.01 , 0.01 ,
                         0.0, 0.0, 0.01]
-        
-#NOTE: The real dvl give us 3 velocities (vx,vy, vz), but we are just using only the 2D velocities. To use the vz is necessary to change the sensorSplit method in FilterNode (in the next iterations of the code :) ). 
+        # NOTE: The real dvl give us 3 velocities (vx,vy, vz), but we are just using only the 
+        # 2D velocities. To use the vz is necessary to change the sensorSplit method in FilterNode 
+        # (in the next iterations of the code :) ). 
         sensors:
             -   frame_id:   "gnss"
                 config:     "Hposition"            # [x, y]
                 noise:      [0.001, 0.001]         # if you want to use the noise directly from the sensor, fill the noise with zeros
                 outlier_tolerance: 2.0
                 reject_counter: 2
-            -   frame_id:   "vel_in"
+            -   frame_id:   "dvl_bt"
                 config:     "Hvelocity"            # [vx, vy]
                 noise:      [0.0225, 0.0225]
-                outlier_tolerance: 0.2
+                outlier_tolerance: 0.35
                 reject_counter: 200
-            -   frame_id:   "depth" 
+            -   frame_id:   "depth"
                 config:     "Vposition"            # [z]
                 noise:      [0.1]
                 outlier_tolerance: 0.2
                 reject_counter: 8
-            -   frame_id:   "imu"  
+            -   frame_id:   "ahrs"
                 config:     "orientation"          
-                noise:      [0.05, 0.05, 0.05,  # [roll, pitch, yaw]
-                            0.2, 0.2, 0.2]         # roll_rate, picth_rate, yaw_rate]
+                noise:      [0.05, 0.05, 0.05,      # [roll, pitch, yaw]
+                             0.2 , 0.2 , 0.2]          # roll_rate, picth_rate, yaw_rate]
                 outlier_tolerance: 0.5
                 reject_counter: 12
     dvl:
-      body_frame: true  # If dvl values are in inercial frame, you need to put false here!!!
+      body_frame: false  # If dvl values are in inercial frame, you need to put false here!!!
 
 usbl2pos:
     t_sync: 2

@@ -7,3 +7,10 @@ pressure_to_meas:
   node_frequency: 5
   topics/publishers: ["/measurement/position"]
   topics/subscribers: ["/mavros/imu/pressure"]
+
+ardusub_thrust_allocation:
+  topics/subscribers/thrust_body_request: "/controls/inner_loops_pid/thrust_body_request"
+  topics/publishers/thrusters: "/mavros/rc/override"
+  thrusters/allocation_vector: [1.0, 1.0, 1.0]
+  thrusters/ctf: [0.0, 10.28, 1582]
+  thrusters/ctb: [0.0, 12.28, 1482]
