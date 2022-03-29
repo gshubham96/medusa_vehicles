@@ -78,7 +78,7 @@ void ArduSubThrustAllocation::thrusterAllocation(const auv_msgs::BodyForceReques
 
   // Saturate thrust
   saturateVector(thrust);
-  std::cout << "normalized force  : " << ft_req << std::endl;
+  // std::cout << "normalized force  : " << ft_req << std::endl;
 
   // Convert from force to % of RPM (because of the drivers - legacy)
   mavros_msgs::OverrideRCIn pwm;

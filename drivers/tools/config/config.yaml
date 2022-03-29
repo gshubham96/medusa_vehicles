@@ -1,9 +1,9 @@
-imu_to_meas:
+imu:
   node_frequency: 10
   topics/publishers: ["/measurement/orientation"]
   topics/subscribers: ["/mavros/imu/data"]
 
-pressure_to_meas:
+pressure:
   node_frequency: 5
   topics/publishers: ["/measurement/position"]
   topics/subscribers: ["/mavros/imu/pressure"]
@@ -14,3 +14,7 @@ ardusub_thrust_allocation:
   thrusters/allocation_vector: [1.0, 1.0, 1.0]
   thrusters/ctf: [0.0, 10.28, 1582]
   thrusters/ctb: [0.0, 12.28, 1482]
+
+dvl:
+  ip: 192.168.69.20
+  port: 16171
