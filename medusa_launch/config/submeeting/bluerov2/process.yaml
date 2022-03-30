@@ -1,6 +1,6 @@
 processes:
     - name: 'addons'
-      launch_on_startup: true
+      launch_on_startup: false
       delay_before_start: 0.0
       cmd: 'roslaunch medusa_bringup addons.launch'
       args:
@@ -26,7 +26,7 @@ processes:
       dependencies:
             []
     - name: 'simulation'
-      launch_on_startup: true
+      launch_on_startup: false
       delay_before_start: 0.0
       cmd: 'roslaunch medusa_bringup sim.launch'
       args:
@@ -39,13 +39,13 @@ processes:
       delay_before_start: 4.0
       cmd: 'roslaunch medusa_bringup nav.launch'
       args:
-            - filter:= true
+            - filter:= false
             - gnss2utm:= true
-            - auvstate2mstate:= true
+            - auvstate2mstate:= false
       dependencies:
             []
     - name: 'controllers'
-      launch_on_startup: true
+      launch_on_startup: false
       delay_before_start: 1.0
       cmd: 'roslaunch medusa_bringup controls.launch'
       args:

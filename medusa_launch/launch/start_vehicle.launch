@@ -14,6 +14,7 @@
     <rosparam command="load" file="$(arg dollar)$(arg config_package_path))/config/$(arg folder)/$(arg name)/common.yaml" />
 
 	<include file="$(find tools)/launch/bluerov2.launch"/>
+	<!-- <include file="$(find drivers_open)/launch/ardusub.launch"/> -->
 
     <!-- Launch the Processes in process.yaml -->
     <node pkg="medusa_bringup" type="medusa_bringup_node" name="medusa_bringup" respawn="false" output="screen">

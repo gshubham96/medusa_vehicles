@@ -79,7 +79,7 @@ double ImuToMeas::nodeFrequency()
 */
 void ImuToMeas::loadParams() {
  	ROS_INFO("Load the ImuToMeas parameters");
-	frame_override = MedusaGimmicks::getParameters<std::string>(nh_p_, "frame_override", "null");
+	frame_override = MedusaGimmicks::getParameters<std::string>(nh_p_, "frame_override", std::string());
 }
 
 /*
@@ -99,7 +99,7 @@ void ImuToMeas::messageCallback(const sensor_msgs::Imu& msg) {
 	// convert incoming sensor_msgs:LImu to dsor_msgs::Measurement format that filter understands
 	meas = messageConvert(msg);
 
-	if (frame_override != "null"){
+	if (frame_override != std::string()){
 		meas.header.frame_id = frame_override;
 	}
 

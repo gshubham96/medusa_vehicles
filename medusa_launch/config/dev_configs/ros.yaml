@@ -108,7 +108,7 @@ nav/filter:
 nav/gnss2utm:
     node_frequency: 10
     topics:
-        subscribers: [ "/sensors/gnss" ]
+        subscribers: [ "/mavros/global_position/raw/fix" ]
         publishers: [ "/measurement/position" ]
         ground_truth: "/State_gt"
     services:

@@ -16,6 +16,7 @@ FluidPressureToMeas::FluidPressureToMeas(ros::NodeHandle *nodehandle, ros::NodeH
  	initializePublishers();
 
 	init_mode = true;
+	count = 0;
 }
 
  /*
@@ -81,7 +82,7 @@ double FluidPressureToMeas::nodeFrequency()
 */
 void FluidPressureToMeas::loadParams() {
  	ROS_INFO("Load the FluidPressureToMeas parameters");
-	threshold = MedusaGimmicks::getParameters<int>(nh_p_, "density", 10);
+	threshold = MedusaGimmicks::getParameters<int>(nh_p_, "threshold", 10);
 	density = MedusaGimmicks::getParameters<double>(nh_p_, "density", 997.0474);
 	frame_override = MedusaGimmicks::getParameters<std::string>(nh_p_, "frame_override", std::string());
 }
@@ -102,13 +103,13 @@ void FluidPressureToMeas::messageCallback(const sensor_msgs::FluidPressure& msg)
 	// Initialize zero depth at startup
 	if (init_mode == true){
 		pressure0 += msg.fluid_pressure;
-		return;
-		if (count++ >= threshold){
+		count++;
+
+		if (count == threshold){
 			pressure0 = pressure0/threshold;
 			init_mode = false;
 		}
 	}
-
 
 	dsor_msgs::Measurement meas;
 	// convert incoming sensor_msgs:LImu to dsor_msgs::Measurement format that filter understands
