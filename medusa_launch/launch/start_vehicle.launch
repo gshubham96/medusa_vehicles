@@ -10,9 +10,8 @@
     <arg name="config_package_path"  value="(find $(arg config_package)" />
 
     <!-- Load topic names and Common configurations for all topics -->
-
-	<include file="$(find tools)/launch/bluerov2.launch"/>
-	<!-- <include file="$(find drivers_open)/launch/ardusub.launch"/> -->
+    <rosparam command="load" file="$(arg dollar)$(arg config_package_path))/config/dev_configs/ros.yaml" />
+    <rosparam command="load" file="$(arg dollar)$(arg config_package_path))/config/$(arg folder)/$(arg name)/common.yaml" />
 
     <!-- Launch the Processes in process.yaml -->
     <node pkg="medusa_bringup" type="medusa_bringup_node" name="medusa_bringup" respawn="false" output="screen">

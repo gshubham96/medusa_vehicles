@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<launch>
+    <arg name="name"               />        <!-- Name of the vehicle being launched -->   
+
+	<include file="$(find medusa_ardusub)/launch/ardusub.launch"/>
+	<!-- <include file="$(find waterlinked_a50_ros_driver)/launch/launch_dvl.launch"/> -->
+</launch>

@@ -1,10 +1,10 @@
 plugin_blacklist:
 - '*'
-# - image_pub
+- image_pub
 
 plugin_whitelist:
 - 'imu*'
 - state
-- '*global_position/raw*'
+- '*global_position*'
 # - vfr_hud
 # - 'sys_*'

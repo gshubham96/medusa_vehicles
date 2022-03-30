@@ -67,7 +67,7 @@ filter:
                 outlier_tolerance: 0.5
                 reject_counter: 12
     dvl:
-      body_frame: false  # If dvl values are in inercial frame, you need to put false here!!!
+      body_frame: false  # If dvl values are in inertial frame, you need to put false here!!!
 
 gnss2utm:
     frame_override: "gnss"
@@ -75,13 +75,13 @@ gnss2utm:
 imu2meas:
   node_frequency: 10
   topics/publishers: ["/measurement/orientation"]
-  topics/subscribers: ["/bluerov/mavros/imu/data"]
+  topics/subscribers: ["/mavros/imu/data"]
   frame_override: "ahrs"
 
 pressure2depth:
   node_frequency: 5
   topics/publishers: ["/measurement/position"]
-  topics/subscribers: ["/bluerov/mavros/imu/static_pressure"]
+  topics/subscribers: ["/mavros/imu/static_pressure"]
   frame_override: "depth"
   threshold: 10
   density: 997.0474

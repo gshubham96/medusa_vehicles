@@ -135,6 +135,19 @@ nav/auvstate2mstate:
         subscribers: [ "/nav/filter/state", "/drivers/inside_pressure/data", "/sensors/gnss" ]
         publishers:  [ "/State" ]
 
+nav/imu2meas:
+    node_frequency: 10
+    topics/publishers: ["/measurement/orientation"]
+    topics/subscribers: ["/mavros/imu/data"]
+    frame_override: "ahrs"
+
+nav/pressure2depth:
+    node_frequency: 5
+    topics/publishers: ["/measurement/position"]
+    topics/subscribers: ["/mavros/imu/static_pressure"]
+    frame_override: "depth"
+    threshold: 10
+    density: 997.0474
 
 ## --------------------------- ## 
 #  medusa_control               #

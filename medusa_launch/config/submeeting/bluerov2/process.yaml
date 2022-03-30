@@ -1,6 +1,14 @@
 processes:
+    - name: 'ardusub'
+      launch_on_startup: true
+      delay_before_start: 5.0
+      cmd: 'roslaunch medusa_drivers bluerov2.launch'
+      args:
+            - name:= true
+      dependencies:
+            []
     - name: 'addons'
-      launch_on_startup: false
+      launch_on_startup: true
       delay_before_start: 0.0
       cmd: 'roslaunch medusa_bringup addons.launch'
       args:
@@ -39,15 +47,15 @@ processes:
       delay_before_start: 4.0
       cmd: 'roslaunch medusa_bringup nav.launch'
       args:
-            - filter:= false
+            - filter:= true
             - gnss2utm:= true
             - imu2meas:= true
             - pressure2depth:= true
-            - auvstate2mstate:= false
+            - auvstate2mstate:= true
       dependencies:
             []
     - name: 'controllers'
-      launch_on_startup: false
+      launch_on_startup: true
       delay_before_start: 1.0
       cmd: 'roslaunch medusa_bringup controls.launch'
       args:
