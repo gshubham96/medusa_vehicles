@@ -41,6 +41,8 @@ processes:
       args:
             - filter:= false
             - gnss2utm:= true
+            - imu2meas:= true
+            - pressure2depth:= true
             - auvstate2mstate:= false
       dependencies:
             []

@@ -1,6 +1,74 @@
 <?xml version="1.0"?>
 <launch>
 
+  <env name="ROSCONSOLE_FORMAT" value="[${severity}] [${time}]: ${node}: ${message}"/>
+
+  <!-- Parameters and Arguments -->
+  <arg name="name"            				/> <!-- Name of the vehicle being launched -->   
+  <arg name="config_package_path"  			/> <!-- Name of the package where the configuration files are stored -->
+  <arg name="folder"                default="submeeting" />  <!-- Name of the folder for the configuration files --> 
+  <arg name="namespace"             default="false" />
+
+  <arg name="force2pwm"  			default="false" />
+  <arg name="fluidPressure2depth"   default="false" />   
+  <arg name="imu2orientation"       default="false" />
+  <arg name="waterlinked_a50"       default="false" />
+  
+  <group ns="bluerov">
+
+    <!-- MAVROS pkg to handle mavlink communication	 -->
+  	<arg name="fcu_url" default="udp://:14550@192.168.2.1:14550" />
+	<arg name="gcs_url" default="" />
+	<arg name="tgt_system" default="1" />
+	<arg name="tgt_component" default="1" />
+	<arg name="log_output" default="log" />
+	<arg name="fcu_protocol" default="v2.0" />
+	<arg name="respawn_mavros" default="false" />
+
+	<include file="$(find mavros)/launch/node.launch">
+		<arg name="pluginlists_yaml" value="$(find drivers_open)/config/ardusub_pluginlists.yaml" />
+		<arg name="config_yaml" value="$(find drivers_open)/config/ardusub_config.yaml" />
+
+		<arg name="fcu_url" value="$(arg fcu_url)" />
+		<arg name="gcs_url" value="$(arg gcs_url)" />
+		<arg name="tgt_system" value="$(arg tgt_system)" />
+		<arg name="tgt_component" value="$(arg tgt_component)" />
+		<arg name="log_output" value="$(arg log_output)" />
+		<arg name="fcu_protocol" value="$(arg fcu_protocol)" />
+		<arg name="respawn_mavros" default="$(arg respawn_mavros)" />
+	</include>
+
+    <!-- Vehicle Specific Config File -->
+    <arg name="dollar" value="$" />
+    <rosparam command="load" file="$(arg dollar)$(arg config_package_path))/config/$(arg folder)/$(arg name)/control.yaml" />
+
+    <!-- Launch Nodes that are common to all vehicles -->
+
+    <!-- Thrust allocation: convert forces applied in body frame to desired thrust to apply to the motors -->
+    <group if="$(arg static_thruster_allocation)">
+      <node pkg="static_thruster_allocation" type="static_thruster_allocation" name="static_thruster_allocation" output="screen" />
+    </group>
+
+    <!-- innerloops: convert dynamic references to thruster force components -->
+    <group if="$(arg inner_loops_pid)">
+      <node pkg="inner_loops_pid" type="inner_loops_pid" name="inner_loops_pid" output="screen" />
+    </group>
+
+    <!-- outerloops: provides kinetic references and vehicle planning behaviors -->
+    <!-- waypoint behavior -->
+    <group if="$(arg waypoint)">
+      <node pkg="waypoint" type="waypoint_node" name="waypoint" output="screen" />
+    </group>
+
+    <!-- path following path following controllers   -->
+    <group if="$(arg path_following)">
+      <node pkg="path_following" type="path_following_node" name="path_following" output="screen" />
+    </group>
+  </group>
+</launch>
+
+<launch>
+
   	<group ns="drivers">
 		<rosparam command="load" file="$(find tools)/config/config.yaml"/>
 

@@ -7,7 +7,7 @@
 /**
  * @brief  ROS implementation of the thrust allocation. Receives forces applied to the vehicle and calculates the desired forces to each thruster based on the pseudo inverse of the thrust allocation matrix
  */
-class ArduSubThrustAllocation {
+class ThrustToPwm {
 public:
   /**
    * @brief  Thrust Allocation class constructor
@@ -15,7 +15,7 @@ public:
    * @param nh  ROS nodehandle to publish, subscribe and read relevant
    * parameters
    */
-  ArduSubThrustAllocation(ros::NodeHandle &nh);
+  ThrustToPwm(ros::NodeHandle &nh);
 
   /**
    * @brief  Function to initialize subscribers 

@@ -10,8 +10,6 @@
     <arg name="config_package_path"  value="(find $(arg config_package)" />
 
     <!-- Load topic names and Common configurations for all topics -->
-    <rosparam command="load" file="$(arg dollar)$(arg config_package_path))/config/dev_configs/ros.yaml" />
-    <rosparam command="load" file="$(arg dollar)$(arg config_package_path))/config/$(arg folder)/$(arg name)/common.yaml" />
 
 	<include file="$(find tools)/launch/bluerov2.launch"/>
 	<!-- <include file="$(find drivers_open)/launch/ardusub.launch"/> -->

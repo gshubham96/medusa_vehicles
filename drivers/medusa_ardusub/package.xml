@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>medusa_ardusub</name>
+  <version>1.0.0</version>
+  <description>The medusa_ardusub package</description>
+
+  <maintainer email="gshubham96@gmail.com">Shubham Garg</maintainer>
+
+  <license>MIT</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+</package>
